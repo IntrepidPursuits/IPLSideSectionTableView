@@ -1,14 +1,5 @@
 # IPLSideSectionTableView
 
-[![Version](http://cocoapod-badges.herokuapp.com/v/IPLSideSectionTableView/badge.png)](http://cocoadocs.org/docsets/IPLSideSectionTableView)
-[![Platform](http://cocoapod-badges.herokuapp.com/p/IPLSideSectionTableView/badge.png)](http://cocoadocs.org/docsets/IPLSideSectionTableView)
-
-## Usage
-
-To run the example project; clone the repo, and run `pod install` from the Project directory first.
-
-## Requirements
-
 ## Installation
 
 IPLSideSectionTableView is available through [CocoaPods](http://cocoapods.org), to install
@@ -18,9 +9,9 @@ it simply add the following line to your Podfile:
 
 ## Author
 
-Ross LeBeau, ross.lebeau@gmail.com
+Intrepid Pursuits, www.intrepid.io
 
 ## License
 
-IPLSideSectionTableView is available under the MIT license. See the LICENSE file for more info.
+IPLSideSectionTableView is available under the New BSD license. See the LICENSE file for more info.
 
