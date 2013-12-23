@@ -1,36 +1,16 @@
-#
-# Be sure to run `pod spec lint NAME.podspec' to ensure this is a
-# valid spec and remove all comments before submitting the spec.
-#
-# To learn more about the attributes see http://docs.cocoapods.org/specification.html
-#
 Pod::Spec.new do |s|
   s.name         = "IPLSideSectionTableView"
   s.version      = "0.1.0"
-  s.summary      = "A short description of IPLSideSectionTableView."
+  s.summary      = "A UITableView subclass that puts the section headers on the left edge of the table view."
   s.description  = <<-DESC
-                    An optional longer description of IPLSideSectionTableView
-
-                    * Markdown format.
-                    * Don't worry about the indent, we strip it!
+                    This class lets you create a UITableView where the section header views are not displayed inline with the other cells, but along the left side of the table view instead. They still start at the same y coordinate they normally would, and they still scroll
                    DESC
-  s.homepage     = "http://EXAMPLE/NAME"
-  s.screenshots  = "www.example.com/screenshots_1", "www.example.com/screenshots_2"
-  s.license      = 'MIT'
-  s.author       = { "Ross LeBeau" => "ross.lebeau@gmail.com" }
-  s.source       = { :git => "http://EXAMPLE/NAME.git", :tag => s.version.to_s }
-
-  # s.platform     = :ios, '5.0'
-  # s.ios.deployment_target = '5.0'
-  # s.osx.deployment_target = '10.7'
+  s.homepage     = "https://github.com/IntrepidPursuits/IPLSideSectionTableView"
+  s.license      = 'New BSD'
+  s.author       = { "Intrepid Pursuits" => "hello@intrepid.io" }
+  s.source       = { :git => "https://github.com/IntrepidPursuits/IPLSideSectionTableView.git", :tag => "0.1.0" }
   s.requires_arc = true
-
-  s.source_files = 'Classes'
-  s.resources = 'Assets'
-
+  s.source_files = 'Classes/**/*.{h,m}'
   s.ios.exclude_files = 'Classes/osx'
   s.osx.exclude_files = 'Classes/ios'
-  # s.public_header_files = 'Classes/**/*.h'
-  # s.frameworks = 'SomeFramework', 'AnotherFramework'
-  # s.dependency 'JSONKit', '~> 1.4'
 end
