@@ -83,32 +83,30 @@ const CGFloat kIPLSideSectionTableViewAutohideHideDelay = 0.5;
 }
 
 - (void)hideSideLabels {
-    if (self.autoHideEnabled) {
-        [UIView animateWithDuration:kIPLSideSectionTableViewAutohideShowDuration
-                              delay:kIPLSideSectionTableViewAutohideHideDelay
-                            options:UIViewAnimationOptionAllowUserInteraction
-                         animations:^{
-                             if ([delegateInterceptor.receiver respondsToSelector:@selector(tableViewWillHideSideViews:)]) {
-                                 [delegateInterceptor.receiver tableViewWillHideSideViews:self];
-                             }
-                             
-                             for (UIView *sideLabel in self.sideHeaderViews) {
-                                 if ((id)sideLabel != [NSNull null]) {
-                                     // Move left and fade out
-                                     // Looks better fading out halfway off the screen, rather than fully off the screen
-                                     sideLabel.transform = CGAffineTransformMakeTranslation(0 - CGRectGetMaxX(sideLabel.frame)/2, sideLabel.transform.ty);
-                                     sideLabel.alpha = 0;
-                                 }
+    [UIView animateWithDuration:kIPLSideSectionTableViewAutohideShowDuration
+                          delay:kIPLSideSectionTableViewAutohideHideDelay
+                        options:UIViewAnimationOptionAllowUserInteraction
+                     animations:^{
+                         if ([delegateInterceptor.receiver respondsToSelector:@selector(tableViewWillHideSideViews:)]) {
+                             [delegateInterceptor.receiver tableViewWillHideSideViews:self];
+                         }
+                         
+                         for (UIView *sideLabel in self.sideHeaderViews) {
+                             if ((id)sideLabel != [NSNull null]) {
+                                 // Move left and fade out
+                                 // Looks better fading out halfway off the screen, rather than fully off the screen
+                                 sideLabel.transform = CGAffineTransformMakeTranslation(0 - CGRectGetMaxX(sideLabel.frame)/2, sideLabel.transform.ty);
+                                 sideLabel.alpha = 0;
                              }
                          }
-                         completion:^(BOOL finished) {
-                             ;
-                         }];
-    }
+                     }
+                     completion:^(BOOL finished) {
+                         ;
+                     }];
+
 }
 
 - (void)showSideLabels {
-    if (self.autoHideEnabled) {
         [UIView animateWithDuration:kIPLSideSectionTableViewAutohideShowDuration
                               delay:0
                             options:UIViewAnimationOptionBeginFromCurrentState
@@ -128,7 +126,6 @@ const CGFloat kIPLSideSectionTableViewAutohideHideDelay = 0.5;
                          completion:^(BOOL finished) {
                              ;
                          }];
-    }
 }
 
 - (void)positionSideView:(UIView *)sideView inSection:(NSInteger)section {
@@ -168,8 +165,9 @@ const CGFloat kIPLSideSectionTableViewAutohideHideDelay = 0.5;
     }
     
     self.userIsScrolling = YES;
-    
-    [self showSideLabels];
+    if (self.autoHideEnabled) {
+        [self showSideLabels];
+    }
 }
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView {
@@ -187,7 +185,9 @@ const CGFloat kIPLSideSectionTableViewAutohideHideDelay = 0.5;
 
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView {
     self.userIsScrolling = NO;
-    [self hideSideLabels];
+    if (self.autoHideEnabled) {
+        [self hideSideLabels];
+    }
     
     if ([delegateInterceptor.receiver respondsToSelector:@selector(scrollViewDidEndDecelerating:)]) {
         [delegateInterceptor.receiver scrollViewDidEndDecelerating:scrollView];
@@ -197,7 +197,9 @@ const CGFloat kIPLSideSectionTableViewAutohideHideDelay = 0.5;
 - (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate {
     if (!decelerate && !scrollView.isDecelerating) {
         self.userIsScrolling = NO;
-        [self hideSideLabels];
+        if (self.autoHideEnabled) {
+            [self hideSideLabels];
+        }
     }
 
     if ([delegateInterceptor.receiver respondsToSelector:@selector(scrollViewDidEndDragging:willDecelerate:)]) {
